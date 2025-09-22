@@ -67,8 +67,8 @@ button {
 }
 
 
-#zero, #add, #enter {
-    flex: 1
+.rowFive .number, #add, #enter {
+    flex: 1;
 }
 
 #subtract, #decimal {
