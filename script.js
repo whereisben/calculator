@@ -50,16 +50,14 @@ const operate = function(firstValue, secondValue, operation) {
 
 numPad.addEventListener('click', function(e) {
     if (operation.length === 0 && e.target.classList[0] === 'number') {
-        if (e.target.id === 'decimal' && !firstValue.includes('.')) {
+        if (e.target.id === 'decimal' && !firstValue.includes('.') && firstValue.length < 9) {
             firstValue.push('.');
             display.textContent = firstValue.join('');
-            console.log(firstValue.join(''))
         }
 
-        if (e.target.id !== 'decimal') {
+        if (e.target.id !== 'decimal' && firstValue.length < 9) {
             firstValue.push(e.target.id);
             display.textContent = Number(firstValue.join(''));
-            console.log(firstValue)
         }
     }   
 
@@ -79,16 +77,15 @@ numPad.addEventListener('click', function(e) {
                 operation.push('-');
                 break;
         }
-        console.log(operation)
     }
 
     if (operation.length === 1 && firstValue.length !== 0 && e.target.classList[0] === 'number') {
-        if (e.target.id === 'decimal' && !secondValue.includes('.')) {
+        if (e.target.id === 'decimal' && !secondValue.includes('.') && secondValue.length < 9) {
             secondValue.push('.');
             display.textContent = secondValue.join('');
         }
 
-        if (e.target.id !== 'decimal') {
+        if (e.target.id !== 'decimal' && secondValue.length < 9) {
             secondValue.push(e.target.id);
             display.textContent = Number(secondValue.join(''));
         }
@@ -96,11 +93,28 @@ numPad.addEventListener('click', function(e) {
 
     if (e.target.classList[0] === 'operation' && secondValue.length !== 0) {
         result = operate(Number(firstValue.join('')), Number(secondValue.join('')), operation[0]);
-        firstValue.length = 0;
-        secondValue.length = 0;
-        firstValue.push(result);
-        display.textContent = result
+
+        if (result === Infinity) {
+            firstValue.length = 0;
+            secondValue.length = 0;
+            display.textContent = 'undefined';
+        }
+
+        if (String(result).length > 9 && result !== Infinity) {
+            firstValue.length = 0;
+            secondValue.length = 0;
+            firstValue.push(result);
+            result = result.toExponential(3);
+            display.textContent = result;
+        }
+        if (String(result).length <= 9 && result !== Infinity) {
+            firstValue.length = 0;
+            secondValue.length = 0;
+            firstValue.push(result);
+            display.textContent = result;
+        }
     }
+    
 
     if (e.target.id === 'clear') {
         operation.length = 0;
