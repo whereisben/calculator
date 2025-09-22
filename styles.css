@@ -1,0 +1,84 @@
+/* * {
+    outline: solid black
+} */
+
+
+html, body {
+    margin: 0;           
+    padding: 0;          
+    width: 100vw;        
+    height: 100vh;
+    font-family: "Varela Round", sans-serif;       
+    font-size: 32px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(6, 15, 57, 0.33);
+}
+
+button {
+    padding: 24px;
+    margin: 0px;
+    border-radius: 8px;
+    border-color: rgb(211, 206, 206);
+    flex: 1 1 0;
+    background-color: rgba(241, 236, 236, 0.97);
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(20, 15, 60, 0.926);
+    padding: 24px;
+    border-radius: 20px;
+    border: 4px solid rgb(154, 153, 166);
+}
+
+.display {
+    display: flex;
+    background-color: rgba(202, 203, 215, 0.988);
+    padding: 24px;
+    margin-bottom: 24px;
+    border-radius: 8px;
+    justify-content: flex-end;
+    height: 20px;
+    align-items: center;
+    flex: 1 0 1
+}
+
+.operation {
+    background-color: rgb(154, 153, 166);
+}
+
+.numPad {
+    display: flex;
+}
+
+.rowOne, .rowTwo, .rowThree, .rowFour, .rowFive {
+    display: flex;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+}
+
+
+#zero, #add, #enter {
+    flex: 1
+}
+
+#subtract, #decimal {
+    flex: 0 1 0
+}
+
+#enter {
+    background-color: rgba(39, 158, 39, 0.838);
+}
+
+#clear {
+    background-color: rgba(236, 36, 36, 0.805);
+}
